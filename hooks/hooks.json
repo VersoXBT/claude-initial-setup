@@ -1,0 +1,68 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"(npm run dev|pnpm( run)? dev|yarn dev|bun run dev)\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Consider running dev servers in tmux for session persistence' >&2"
+          }
+        ],
+        "description": "Remind to use tmux for dev servers"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"git push\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Review changes before pushing. Run git diff and git status first.' >&2"
+          }
+        ],
+        "description": "Reminder before git push"
+      },
+      {
+        "matcher": "tool == \"Bash\" && tool_input.command matches \"(npm|pnpm|yarn|bun) (install|add)\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Verify package legitimacy before installing. Check for typosquatting.' >&2"
+          }
+        ],
+        "description": "Security reminder before installing packages"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Consider running prettier on the edited file' >&2"
+          }
+        ],
+        "description": "Prettier reminder after JS/TS edits"
+      },
+      {
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.(ts|tsx|js|jsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -n 'console\\.log' \"$TOOL_INPUT_file_path\" >/dev/null 2>&1 && echo '[Hook] Warning: console.log detected in edited file. Remove before committing.' >&2 || true"
+          }
+        ],
+        "description": "Warn about console.log in edited files"
+      },
+      {
+        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\.(ts|tsx)$\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Consider running tsc --noEmit to check for type errors' >&2"
+          }
+        ],
+        "description": "TypeScript check reminder after writing TS files"
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+# Coding Standards
+
+## Immutability
+
+Always create new objects instead of mutating. Use spread operators, `structuredClone`, or library solutions like immer.
+
+```typescript
+// WRONG
+user.name = name;
+items.push(newItem);
+
+// CORRECT
+const updated = { ...user, name };
+const added = [...items, newItem];
+const removed = items.filter(x => x.id !== id);
+const mapped = items.map(x => x.id === id ? { ...x, ...changes } : x);
+```
+
+Python: Use `@dataclass(frozen=True)` and `replace()`. Use tuples and frozensets for immutable collections.
+Go: Use value receivers and return new structs.
+
+## File Organization
+
+- 200-400 lines per file, 800 max
+- Organize by feature/domain, not by type
+- Co-locate tests next to source files
+- Move to `shared/` only when used by 3+ features
+- No god files (`utils.ts` with 40 exports)
+
+## Functions
+
+- Under 50 lines each
+- No nesting deeper than 4 levels
+- Use early returns and guard clauses
+
+## Naming
+
+- Variables: describe WHAT (`activeUsers`), not HOW (`data`)
+- Booleans: `is/has/can/should` prefix (`isActive`, `hasPermission`)
+- Functions: verb + noun (`getUserById`, `formatDate`, `validateEmail`)
+- Collections: plural nouns (`users`, `orderItems`)
+- Constants: `SCREAMING_SNAKE` (`MAX_RETRIES`, `API_BASE_URL`)
+- Language casing: camelCase (JS/TS), snake_case (Python), PascalCase (Go exports)
+
+## Git Conventions
+
+### Commits
+
+Format: `<type>(<scope>): <description>`
+Types: feat, fix, refactor, docs, test, chore, perf, ci
+Rules: imperative mood, lowercase, under 72 chars, no period
+
+### Branches
+
+Format: `<type>/<ticket>-<description>` in kebab-case
+Types: feature/, fix/, hotfix/, release/
+
+### Pull Requests
+
+- Under 400 lines of changes
+- Include summary, changes, test plan
+- Squash merge for features, merge commit for releases
+- Never force-push during review
+
+## Testing
+
+### TDD Workflow
+
+1. RED: Write failing test
+2. GREEN: Write minimal code to pass
+3. REFACTOR: Clean up, keep tests green
+4. Target 80%+ coverage
+
+### Test Structure
+
+- Unit tests co-located: `auth.ts` / `auth.test.ts`
+- Integration tests: `test/integration/`
+- E2E tests: `test/e2e/`
+- Factories for dynamic data, fixtures for static data
+
+### Mocking Rules
+
+- Mock at boundaries: external APIs, databases, file I/O
+- Do NOT mock: pure functions, internal utilities, code under test
+- Always restore mocks in afterEach
+- Use dependency injection for testability
+
+## Security
+
+### Input Validation
+
+- Validate all user input at system boundaries
+- Use Zod (TS), Pydantic (Python), struct tags (Go)
+- Prefer allowlists over denylists
+- Parse, then validate into typed domain objects
+
+### SQL Injection
+
+Always use parameterized queries or ORMs. Never concatenate user input into SQL.
+
+```typescript
+// WRONG
+const q = `SELECT * FROM users WHERE email = '${email}'`;
+
+// CORRECT
+const q = 'SELECT * FROM users WHERE email = $1';
+await db.query(q, [email]);
+```
+
+### XSS Prevention
+
+- Use framework escaping (React auto-escapes)
+- Sanitize with DOMPurify for rich HTML
+- Set Content Security Policy headers
+
+### Secrets
+
+- Never hardcode secrets in source code
+- Use `.env` files (never committed) with schema validation at startup
+- `.gitignore`: `.env`, `.env.local`, `*.pem`, `*.key`, `credentials.json`
+- Use platform secret storage for CI/CD (GitHub Secrets, GitLab Variables)
+
+### Additional Defenses
+
+- CSRF: anti-CSRF tokens + SameSite cookies
+- SSRF: allowlist permitted domains
+- IDOR: authorization check on every resource access
+- Auth: bcrypt (12+ rounds), rate limiting, secure session cookies
+- Headers: helmet middleware (CSP, HSTS, Referrer-Policy)
+- Logging: never log passwords, tokens, or PII
+
+## Error Handling
+
+```typescript
+try {
+  const result = await riskyOperation();
+  return result;
+} catch (error) {
+  throw new Error(`Operation failed for ${id}: ${error.message}`);
+}
+```
+
+- Always handle errors explicitly
+- Never swallow errors silently
+- Check `response.ok` on fetch calls
+- Use custom error classes for domain-specific errors
+- Return consistent API error responses with field-level detail
+
+## Debugging
+
+Follow the loop: REPRODUCE -> HYPOTHESIZE -> TEST -> ISOLATE -> FIX -> VERIFY
+
+- Use `git bisect` to find breaking commits
+- Create minimal reproductions
+- Test one hypothesis at a time
+- Fix root causes, not symptoms
+
+## Performance
+
+- Avoid N+1 queries (use joins, include, select_related)
+- Bound queries with LIMIT/pagination
+- Cache appropriately: in-memory LRU, Redis, CDN
+- Set proper Cache-Control headers
+- Lazy load and code split frontend bundles
+
+## Docker
+
+- Multi-stage builds (separate build from runtime)
+- Non-root user (`USER appuser`)
+- Layer caching (dependencies before source code)
+- HEALTHCHECK directives
+- Alpine-based images
+
+## Database
+
+- Normalize to 3NF, denormalize selectively for performance
+- snake_case for tables, columns, indexes
+- Index columns used in WHERE, JOIN, ORDER BY
+- Foreign key constraints for integrity
+- Zero-downtime migrations (nullable first, backfill, then constrain)
+
+## Code Review Priority
+
+1. Correctness: edge cases, error handling, async errors
+2. Security: input validation, authorization, secrets
+3. Performance: N+1 queries, unbounded results
+4. Maintainability: focused functions, clear naming
+5. Testing: coverage, edge cases, behavior over implementation
+6. Style: enforce with linters, not review comments

@@ -1,8 +1,16 @@
 # claude-initial-setup
 
-A curated collection of 75 Claude Code skills across 25 categories. Each skill is a standalone SKILL.md file that teaches Claude specific patterns, conventions, and best practices for your development workflow.
+A comprehensive Claude Code plugin with 75 skills, 14 agents, 15 commands, hooks, and rules across 25 categories. Also includes cross-AI compatibility files for Cursor, GitHub Copilot, and OpenAI Codex.
 
-## Quick Start
+## Installation
+
+### As a Claude Code Plugin
+
+```bash
+claude plugin add github:VersoXBT/claude-initial-setup
+```
+
+### Manual (symlink)
 
 ```bash
 git clone https://github.com/VersoXBT/claude-initial-setup.git
@@ -11,18 +19,69 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The install script symlinks all skills into `~/.claude/skills/`, making them immediately available in Claude Code.
+The install script symlinks all skills into `~/.claude/skills/`.
 
-### Manual Installation
-
-To install specific skills only, symlink individual skill directories:
+### Selective Installation
 
 ```bash
 mkdir -p ~/.claude/skills
 ln -sfn /path/to/claude-initial-setup/skills/typescript/strict-typescript ~/.claude/skills/strict-typescript
 ```
 
-## Categories and Skills
+## What's Included
+
+| Component | Count | Description |
+|-----------|-------|-------------|
+| Skills | 75 | SKILL.md files across 25 categories |
+| Agents | 14 | Specialized subagents for delegated tasks |
+| Commands | 15 | Slash commands for common workflows |
+| Rules | 8 | Coding standards and guidelines |
+| Hooks | 6 | Automation triggers for tool events |
+
+## Agents
+
+Agents are specialized subagents you can spawn for delegated tasks. Each agent has a defined role, toolset, and process.
+
+| Agent | Purpose |
+|-------|---------|
+| `planner` | Implementation planning for complex features |
+| `architect` | System design and architectural decisions |
+| `code-reviewer` | Code quality, security, maintainability review |
+| `security-reviewer` | OWASP vulnerabilities, secrets, injection detection |
+| `tdd-guide` | Test-driven development, 80%+ coverage enforcement |
+| `debugger` | Systematic debugging with hypothesis testing |
+| `build-error-resolver` | Fix build/type errors with minimal diffs |
+| `refactor-cleaner` | Dead code cleanup and consolidation |
+| `doc-updater` | Documentation and README updates |
+| `performance-optimizer` | Profiling, caching, optimization |
+| `database-reviewer` | Schema design, query optimization, migration review |
+| `api-designer` | REST/GraphQL API design and review |
+| `devops-engineer` | Docker, CI/CD, infrastructure |
+| `e2e-runner` | Playwright end-to-end testing |
+
+## Commands
+
+Slash commands for common development workflows.
+
+| Command | Description |
+|---------|-------------|
+| `/review` | Run code review on recent changes |
+| `/tdd` | Start TDD workflow (red-green-refactor) |
+| `/debug` | Systematic debugging process |
+| `/build-fix` | Incrementally fix build errors |
+| `/security-check` | OWASP security audit |
+| `/refactor` | Dead code cleanup and refactoring |
+| `/test-coverage` | Analyze and improve test coverage |
+| `/optimize` | Profile and optimize performance |
+| `/plan` | Create implementation plan |
+| `/deploy-check` | Pre-deployment verification |
+| `/api-review` | Review API design |
+| `/db-review` | Review database schema/queries |
+| `/update-docs` | Update documentation |
+| `/lint-fix` | Auto-fix lint and format issues |
+| `/checkpoint` | Git commit checkpoint |
+
+## Skills by Category
 
 ### Core Workflow
 
@@ -224,26 +283,77 @@ ln -sfn /path/to/claude-initial-setup/skills/typescript/strict-typescript ~/.cla
 | `test-architecture` | Test organization, fixtures, factories, isolation |
 | `mocking-strategies` | Mocks vs stubs vs spies, DI for testing, when NOT to mock |
 
-## Skill Structure
+## Rules
 
-Each skill follows a consistent format:
+Rules provide coding standards that apply across your project.
+
+| Rule | Content |
+|------|---------|
+| `coding-style` | Immutability, file organization, naming, small functions |
+| `git-workflow` | Conventional commits, branch naming, PR process |
+| `testing` | TDD, 80% coverage, test types, isolation |
+| `security` | Secrets, input validation, injection prevention |
+| `performance` | Profile first, caching, lazy loading |
+| `api-design` | REST conventions, error format, pagination |
+| `database` | Normalization, indexing, migrations, N+1 prevention |
+| `agents` | Agent orchestration, when to use which agent |
+
+## Hooks
+
+Automation triggers that run on tool events. Included hooks:
+
+- Tmux reminder for long-running commands
+- Review reminder before git push
+- Package install security check
+- Prettier reminder after JS/TS edits
+- Console.log warning on edited files
+- TypeScript check reminder
+
+All hooks are non-blocking (warnings only) since this is a starter kit. Edit `hooks/hooks.json` to customize.
+
+## Cross-AI Compatibility
+
+This repo includes configuration files for other AI coding tools:
+
+| File | AI Tool | Description |
+|------|---------|-------------|
+| `AGENTS.md` | OpenAI Codex | Development conventions and agent context |
+| `.github/copilot-instructions.md` | GitHub Copilot | Short instruction statements |
+| `.cursor/rules/claude-initial-setup.mdc` | Cursor (modern) | MDC rules with metadata |
+| `.cursorrules` | Cursor (legacy) | Plain markdown rules |
+
+These files distill the key patterns from all 75 skills into each tool's format.
+
+## Repository Structure
 
 ```
-skills/<category>/<skill-name>/
-  SKILL.md
+claude-initial-setup/
+  .claude-plugin/
+    plugin.json              # Plugin manifest
+    marketplace.json         # Marketplace metadata
+  agents/                    # 14 specialized subagents
+  commands/                  # 15 slash commands
+  hooks/
+    hooks.json               # Automation triggers
+  rules/                     # 8 coding standards
+  skills/                    # 75 skills across 25 categories
+    <category>/
+      <skill-name>/
+        SKILL.md
+  .github/
+    copilot-instructions.md  # GitHub Copilot
+  .cursor/
+    rules/
+      claude-initial-setup.mdc  # Cursor
+  AGENTS.md                  # OpenAI Codex
+  .cursorrules               # Cursor (legacy)
+  install.sh                 # Symlink installer
+  uninstall.sh               # Symlink remover
 ```
-
-Every SKILL.md contains:
-
-- **YAML frontmatter** with `name` and `description` (controls when Claude triggers the skill)
-- **When to Use** section listing trigger contexts
-- **Core Patterns** with working code examples
-- **Anti-Patterns** showing what to avoid
-- **Quick Reference** cheat sheet
 
 ## Customization
 
-### Modifying a Skill
+### Modifying Skills
 
 Edit any SKILL.md directly. Changes take effect in the next Claude Code session.
 
@@ -259,8 +369,6 @@ skills/typescript/strict-typescript/
     migration-guide.md
 ```
 
-Reference SKILL.md to point to these files when needed.
-
 ### Creating New Skills
 
 1. Create a directory under the appropriate category
@@ -268,8 +376,6 @@ Reference SKILL.md to point to these files when needed.
 3. Run `./install.sh` to symlink the new skill
 
 ## Uninstall
-
-To remove all symlinked skills:
 
 ```bash
 ./uninstall.sh

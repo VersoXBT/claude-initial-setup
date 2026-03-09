@@ -1,0 +1,54 @@
+{
+  "name": "claude-initial-setup",
+  "version": "1.0.0",
+  "description": "75+ starter skills, 14 agents, and 15 commands covering core workflow, languages, frameworks, infrastructure, security, AI development, and productivity. A comprehensive starter kit for Claude Code.",
+  "author": {
+    "name": "VersoXBT",
+    "url": "https://github.com/VersoXBT"
+  },
+  "homepage": "https://github.com/VersoXBT/claude-initial-setup",
+  "repository": "https://github.com/VersoXBT/claude-initial-setup",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "agents",
+    "commands",
+    "hooks",
+    "typescript",
+    "python",
+    "go",
+    "rust",
+    "java",
+    "react",
+    "nextjs",
+    "fastapi",
+    "django",
+    "express",
+    "docker",
+    "ci-cd",
+    "security",
+    "testing",
+    "tdd"
+  ],
+  "skills": [
+    "./skills/",
+    "./commands/"
+  ],
+  "agents": [
+    "./agents/planner.md",
+    "./agents/architect.md",
+    "./agents/code-reviewer.md",
+    "./agents/security-reviewer.md",
+    "./agents/tdd-guide.md",
+    "./agents/debugger.md",
+    "./agents/build-error-resolver.md",
+    "./agents/refactor-cleaner.md",
+    "./agents/doc-updater.md",
+    "./agents/performance-optimizer.md",
+    "./agents/database-reviewer.md",
+    "./agents/api-designer.md",
+    "./agents/devops-engineer.md",
+    "./agents/e2e-runner.md"
+  ]
+}
