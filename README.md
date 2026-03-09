@@ -6,8 +6,11 @@ A comprehensive Claude Code plugin with 75 skills, 14 agents, 15 commands, hooks
 
 ### As a Claude Code Plugin
 
-```bash
-claude plugin add github:VersoXBT/claude-initial-setup
+In the Claude Code CLI, run:
+
+```
+/plugin marketplace add VersoXBT/claude-initial-setup
+/plugin install claude-initial-setup@claude-initial-setup
 ```
 
 ### Manual (symlink)
