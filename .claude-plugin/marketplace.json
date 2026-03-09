@@ -1,0 +1,20 @@
+{
+  "name": "claude-initial-setup",
+  "owner": {
+    "name": "VersoXBT"
+  },
+  "plugins": [
+    {
+      "name": "claude-initial-setup",
+      "source": "./",
+      "description": "75+ starter skills, 13 agents, 15 commands for Claude Code",
+      "category": "workflow",
+      "tags": [
+        "skills",
+        "agents",
+        "commands",
+        "starter-kit"
+      ]
+    }
+  ]
+}
