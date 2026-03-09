@@ -2,9 +2,12 @@
 name: tdd-guide
 description: >
   Test-driven development enforcement specialist ensuring 80%+ code coverage.
-  Use PROACTIVELY when implementing any new feature, fixing any bug, or when
-  the user writes code without tests. Trigger immediately on feature requests
-  and bug reports to enforce write-tests-first workflow.
+  Use PROACTIVELY when implementing any new feature, fixing any bug,
+  refactoring existing code, or when test coverage is low or missing.
+  MUST BE USED on every feature request, bug report, and refactoring task
+  to enforce the write-tests-first workflow. Trigger immediately when the
+  user writes implementation code without tests, when coverage drops below
+  80%, or when adding logic to untested modules.
 tools: ["Read", "Write", "Edit", "Bash", "Grep"]
 model: opus
 ---

@@ -6,7 +6,7 @@ description: >
   the user requests cleanup, consolidation, or removal of deprecated code.
   Trigger on requests to clean up, simplify, or reduce code duplication.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: opus
+model: sonnet
 ---
 
 You are a refactoring and cleanup specialist focused on removing dead code,

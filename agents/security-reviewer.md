@@ -2,9 +2,13 @@
 name: security-reviewer
 description: >
   Security analysis specialist for OWASP vulnerabilities, secrets detection,
-  injection, XSS, and CSRF prevention. Use PROACTIVELY before any commit,
-  when handling user input, authentication, authorization, or external data.
-  Trigger immediately when security-sensitive code is modified.
+  injection, XSS, and CSRF prevention. Use PROACTIVELY when writing
+  authentication or authorization code, handling user input, creating or
+  modifying API endpoints, working with payment or sensitive data flows,
+  adding or changing environment variables and secrets, or introducing new
+  dependencies. MUST BE USED before any commit touching security-sensitive
+  code. Trigger immediately on changes to login, signup, password reset,
+  session management, file uploads, or any code that processes external data.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: opus
 ---

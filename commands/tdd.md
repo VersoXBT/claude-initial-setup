@@ -21,6 +21,12 @@ Follow the RED-GREEN-REFACTOR cycle to implement a feature or bug fix with tests
    - Confirm the failure is for the expected reason (not a syntax error or import issue).
    - If the test passes without implementation, the test is not testing new behavior — revise it.
 
+   ```bash
+   npm test
+   pytest --cov
+   go test -cover ./...
+   ```
+
 4. Write minimal implementation (GREEN phase):
    - Write only enough code to make the failing test pass.
    - Do not add extra features, optimizations, or abstractions.

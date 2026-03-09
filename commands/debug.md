@@ -15,8 +15,13 @@ Follow a structured approach to identify, isolate, and fix bugs efficiently.
 
 2. Gather evidence:
    - Read error messages, stack traces, and log output carefully.
-   - Check recent changes with `git log --oneline -20` and `git diff` to see if the bug was introduced recently.
+   - Check recent changes to see if the bug was introduced recently.
    - Identify the affected files and functions from the stack trace.
+
+   ```bash
+   git log --oneline -20
+   git diff
+   ```
 
 3. Form a hypothesis:
    - Based on the evidence, propose what is causing the bug.
@@ -27,6 +32,12 @@ Follow a structured approach to identify, isolate, and fix bugs efficiently.
    - If recent regression: use `git bisect` to find the offending commit.
    - If logic error: add targeted logging or use a debugger to trace execution flow.
    - Verify assumptions — check that inputs, state, and dependencies are what you expect.
+
+   ```bash
+   git bisect start
+   git bisect bad HEAD
+   git bisect good <known-good-commit>
+   ```
 
 5. Validate the hypothesis:
    - Confirm the root cause matches the observed behavior.

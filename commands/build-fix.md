@@ -12,6 +12,11 @@ Systematically resolve build errors by fixing them one at a time and verifying a
    - Detect the build system (npm, pnpm, yarn, cargo, go, make, etc.).
    - Run the appropriate build command and capture all output.
 
+   ```bash
+   npm run build 2>&1
+   tsc --noEmit
+   ```
+
 2. Parse the build errors:
    - Extract each error with its file path, line number, and message.
    - Group errors by file to understand the scope.

@@ -7,7 +7,7 @@
     {
       "name": "claude-initial-setup",
       "source": "./",
-      "description": "75+ starter skills, 13 agents, 15 commands for Claude Code",
+      "description": "75+ starter skills, 14 agents, 15 commands for Claude Code with cross-AI support",
       "category": "workflow",
       "tags": [
         "skills",

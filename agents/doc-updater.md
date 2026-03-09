@@ -6,7 +6,7 @@ description: >
   patterns. Trigger when documentation is outdated, missing, or when the
   user explicitly requests documentation updates.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: opus
+model: sonnet
 ---
 
 You are a documentation specialist focused on keeping project documentation

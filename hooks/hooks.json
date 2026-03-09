@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "hooks": {
     "PreToolUse": [
       {
@@ -34,27 +35,17 @@
     ],
     "PostToolUse": [
       {
-        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.(ts|tsx|js|jsx)$\"",
+        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\\\.(ts|tsx|js|jsx)$\"",
         "hooks": [
           {
             "type": "command",
-            "command": "echo '[Hook] Consider running prettier on the edited file' >&2"
+            "command": "node -e \"const fs=require('fs');let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const i=JSON.parse(d);const p=i.tool_input?.file_path;if(p&&fs.existsSync(p)){console.error('[Hook] Consider running prettier on the edited file');const c=fs.readFileSync(p,'utf8');const lines=c.split('\\n');const matches=[];lines.forEach((l,idx)=>{if(/console\\.log/.test(l))matches.push((idx+1)+': '+l.trim())});if(matches.length){console.error('[Hook] WARNING: console.log found in '+p);matches.slice(0,5).forEach(m=>console.error(m));console.error('[Hook] Remove console.log before committing')}}console.log(d)})\""
           }
         ],
-        "description": "Prettier reminder after JS/TS edits"
+        "description": "Prettier reminder and console.log warning after JS/TS edits"
       },
       {
-        "matcher": "tool == \"Edit\" && tool_input.file_path matches \"\\.(ts|tsx|js|jsx)$\"",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "grep -n 'console\\.log' \"$TOOL_INPUT_file_path\" >/dev/null 2>&1 && echo '[Hook] Warning: console.log detected in edited file. Remove before committing.' >&2 || true"
-          }
-        ],
-        "description": "Warn about console.log in edited files"
-      },
-      {
-        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\.(ts|tsx)$\"",
+        "matcher": "tool == \"Write\" && tool_input.file_path matches \"\\\\.(ts|tsx)$\"",
         "hooks": [
           {
             "type": "command",

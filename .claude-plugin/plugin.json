@@ -29,7 +29,12 @@
     "ci-cd",
     "security",
     "testing",
-    "tdd"
+    "tdd",
+    "prompt-engineering",
+    "claude-api",
+    "mcp",
+    "starter-kit",
+    "best-practices"
   ],
   "skills": [
     "./skills/",
