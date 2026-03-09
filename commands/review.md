@@ -10,6 +10,11 @@ Perform a thorough code review on recent changes, checking for quality, security
 
 1. Run `git diff` to identify all changed files. If on a feature branch, use `git diff main...HEAD` to see all changes since branching.
 
+   ```bash
+   git diff --stat
+   git diff main...HEAD
+   ```
+
 2. For each changed file:
    - Read the full file to understand context, not just the diff.
    - Check naming conventions and code readability.

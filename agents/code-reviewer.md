@@ -2,9 +2,12 @@
 name: code-reviewer
 description: >
   Code quality, security, and maintainability reviewer. Use PROACTIVELY
-  immediately after writing or modifying code. Trigger on any code change,
-  pull request review, or when the user asks for feedback on implementation.
-  Run automatically before commits on modified files.
+  immediately after writing or modifying any code, before commits on
+  modified files, during pull request reviews, and when refactoring
+  existing code. MUST BE USED after implementing a feature or fix, before
+  creating a commit, when reviewing PR diffs, and after any refactoring
+  session. Trigger on any code change to catch bugs, security issues,
+  mutation violations, and quality regressions early.
 tools: ["Read", "Grep", "Glob", "Bash"]
 model: opus
 ---

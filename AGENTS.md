@@ -231,17 +231,24 @@ Priority order: Correctness > Security > Performance > Maintainability > Testing
 - Functions focused and under 50 lines
 - New code has corresponding tests
 
-## Available Tools
-
-### Agents
+## Available Agents
 
 | Agent | Purpose |
 |-------|---------|
-| `planner` | Create implementation plans for complex features |
+| `planner` | Implementation planning for complex features and refactoring |
 | `architect` | System design and architectural decisions |
-| `code-reviewer` | Systematic code review with severity levels |
-| `security-reviewer` | Security vulnerability analysis |
-| `tdd-guide` | Test-driven development workflow |
+| `code-reviewer` | Code quality, security, and maintainability review |
+| `security-reviewer` | OWASP vulnerabilities, secrets detection, injection prevention |
+| `tdd-guide` | Test-driven development, 80%+ coverage enforcement |
+| `debugger` | Systematic debugging with hypothesis testing and binary search |
+| `build-error-resolver` | Fix build and type errors with minimal diffs |
+| `refactor-cleaner` | Dead code cleanup and consolidation |
+| `doc-updater` | Documentation and README updates |
+| `performance-optimizer` | Profiling, caching, and optimization |
+| `database-reviewer` | Schema design, query optimization, migration review |
+| `api-designer` | REST and GraphQL API design and review |
+| `devops-engineer` | Docker, CI/CD, infrastructure, and deployment |
+| `e2e-runner` | Playwright end-to-end testing for critical user flows |
 
 ### Commands
 

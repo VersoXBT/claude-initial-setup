@@ -10,8 +10,13 @@ Analyze current test coverage, identify gaps, and write tests to achieve at leas
 
 1. Run the test suite with coverage enabled:
    - Detect the test runner (jest, vitest, pytest, go test, etc.).
-   - Run with coverage flags (e.g., `--coverage`, `--cov`, `-cover`).
-   - Capture the coverage report output.
+   - Run with coverage flags and capture the coverage report output.
+
+   ```bash
+   npm test -- --coverage
+   pytest --cov --cov-report=html
+   go test -cover -coverprofile=coverage.out ./...
+   ```
 
 2. Parse the coverage report:
    - Identify files below 80% coverage.
