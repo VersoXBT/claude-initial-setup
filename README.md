@@ -1,6 +1,14 @@
-[![GitHub stars](https://img.shields.io/github/stars/VersoXBT/claude-initial-setup?style=flat)](https://github.com/VersoXBT/claude-initial-setup/stargazers)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/VersoXBT/claude-initial-setup/blob/main/LICENSE)
-[![Version](https://img.shields.io/github/v/tag/VersoXBT/claude-initial-setup?label=version)](https://github.com/VersoXBT/claude-initial-setup/releases)
+<div align="center">
+
+[![Stars](https://img.shields.io/github/stars/VersoXBT/claude-initial-setup?style=flat-square&logo=github&label=Stars)](https://github.com/VersoXBT/claude-initial-setup/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/VersoXBT/claude-initial-setup/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/v/tag/VersoXBT/claude-initial-setup?label=version&style=flat-square)](https://github.com/VersoXBT/claude-initial-setup/releases)
+[![Built for Claude Code](https://img.shields.io/badge/Built%20for-Claude%20Code-blueviolet?style=flat-square&logo=anthropic)](https://claude.ai/code)
+[![Skills](https://img.shields.io/badge/Skills-75-green?style=flat-square)]()
+[![Agents](https://img.shields.io/badge/Agents-14-blue?style=flat-square)]()
+[![Commands](https://img.shields.io/badge/Commands-15-orange?style=flat-square)]()
+
+</div>
 
 # Claude Code Starter Kit
 
@@ -551,3 +559,14 @@ For bug reports or feature requests, open an issue on the [GitHub Issues](https:
 ## License
 
 [MIT](https://github.com/VersoXBT/claude-initial-setup/blob/main/LICENSE)
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/VersoXBT"><img src="https://avatars.githubusercontent.com/u/202813801?v=4" width="80px;" alt=""/><br /><sub><b>VersoXBT</b></sub></a><br />💻 📖 🎨</td>
+    <td align="center"><a href="https://github.com/claude"><img src="https://avatars.githubusercontent.com/u/81847?v=4" width="80px;" alt=""/><br /><sub><b>Claude</b></sub></a><br />🤖 💡</td>
+  </tr>
+</table>
+<!-- ALL-CONTRIBUTORS-LIST:END -->
